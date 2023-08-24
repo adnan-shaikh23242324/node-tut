@@ -41,14 +41,38 @@
 // })
 
 const express = require('express');
+const reqFilter = require('./middleware');
 const app= express();
+const route =  express.Router();
 
-app.set('view engine','ejs');
+// app.set('view engine','ejs');\
+// middleware 
+
+// const reqFilter=(req,resp,next)=>{
+//     if(!req.query.age){
+//         resp.send("please provide your age")
+//     }
+    
+//     else if(req.query.age<18){
+//         resp.send("you are under aged")
+
+//     }
+//     else{
+//         next();
+//     }
+
+// }
+
+route.use(reqFilter);
 app.get('',(req,res)=>{
     res.send('Welcome,this is home page');
 });
 
-app.get('/about',(req,res)=>{
+route.get('/users',(req,res)=>{
+    res.send('Welcome,this is users page');
+});
+
+route.get('/about',(req,res)=>{
     res.send('Welcome,this is about page');
 });
 
@@ -56,6 +80,7 @@ app.get('/help',(req,res)=>{
     res.send('Welcome,this is help page');
 });
 
+app.use('/',route)
 
 app.get('/profile',(req,res)=>{
 
