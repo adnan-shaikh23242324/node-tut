@@ -20,7 +20,7 @@
 // console.log(100+20);
 
 // const http = require('http');
-// const data= require('./data')
+// const data= require('./data') 
 
 //  http.createServer((req,resp)=>{
 // resp.writeHead(200,{'Content-Type':'application\json'});
@@ -40,10 +40,10 @@
 //     })
 // })
 
-const express = require('express');
-const reqFilter = require('./middleware');
-const app= express();
-const route =  express.Router();
+// const express = require('express');
+// const reqFilter = require('./middleware');
+// const app= express();
+// const route =  express.Router();
 
 // app.set('view engine','ejs');\
 // middleware 
@@ -52,7 +52,7 @@ const route =  express.Router();
 //     if(!req.query.age){
 //         resp.send("please provide your age")
 //     }
-    
+
 //     else if(req.query.age<18){
 //         resp.send("you are under aged")
 
@@ -63,34 +63,52 @@ const route =  express.Router();
 
 // }
 
-route.use(reqFilter);
-app.get('',(req,res)=>{
-    res.send('Welcome,this is home page');
-});
+// route.use(reqFilter);
+// app.get('',(req,res)=>{
+//     res.send('Welcome,this is home page');
+// });
 
-route.get('/users',(req,res)=>{
-    res.send('Welcome,this is users page');
-});
+// route.get('/users',(req,res)=>{
+//     res.send('Welcome,this is users page');
+// });
 
-route.get('/about',(req,res)=>{
-    res.send('Welcome,this is about page');
-});
+// route.get('/about',(req,res)=>{
+//     res.send('Welcome,this is about page');
+// });
 
-app.get('/help',(req,res)=>{
-    res.send('Welcome,this is help page');
-});
+// app.get('/help',(req,res)=>{
+//     res.send('Welcome,this is help page');
+// });
 
-app.use('/',route)
+// app.use('/',route)
 
-app.get('/profile',(req,res)=>{
+// app.get('/profile',(req,res)=>{
 
-    const user={
-        name:'Adnan Shaikh',
-        email:'adnan shaikh@gmail.com',
-        country:'INDIA',
-        skills:['php','js','c++','java','node']
-    }
-    res.render('profile',{user});
-});
+//     const user={
+//         name:'Adnan Shaikh',
+//         email:'adnan shaikh@gmail.com',
+//         country:'INDIA',
+//         skills:['php','js','c++','java','node']
+//     }
+//     res.render('profile',{user});
+// });
 
-app.listen(4300);   
+// app.listen(4300);   
+
+
+// getData();
+
+// db.connect().then((resp) => {
+//     resp.find().toArray().then((data)=>{
+//         console.warn(data);
+//     });
+
+// })
+const dbConnect=require('./mongodb')
+const main = async () => {
+    let data = await dbConnect();
+    data =await data.find().toArray();
+    console.warn(data);
+}
+
+main();
